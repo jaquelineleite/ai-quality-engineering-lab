@@ -1,0 +1,53 @@
+[
+  {
+    "id": "FA-001",
+    "input": {
+      "failureDetails": "Open Banking API test failed. Endpoint: GET /obp/v4.0.0/banks. Expected HTTP status 201 but received 200."
+    },
+    "expected": {
+      "category": "TEST_AUTOMATION",
+      "mustContainEvidence": [
+        "Expected HTTP status 201",
+        "received 200"
+      ],
+      "allowedConfidence": [
+        "MEDIUM",
+        "HIGH"
+      ]
+    }
+  },
+  {
+    "id": "FA-002",
+    "input": {
+      "failureDetails": "Open Banking authentication test failed. Expected HTTP status 200 but received 401 Unauthorized. Request was sent without an Authorization header."
+    },
+    "expected": {
+      "category": "TEST_AUTOMATION",
+      "mustContainEvidence": [
+        "401",
+        "Authorization"
+      ],
+      "allowedConfidence": [
+        "MEDIUM",
+        "HIGH"
+      ]
+    }
+  },
+  {
+    "id": "FA-003",
+    "input": {
+      "failureDetails": "API test failed because the request could not connect to the target host. Error: ECONNREFUSED. No HTTP response was received."
+    },
+    "expected": {
+      "category": "ENVIRONMENT",
+      "mustContainEvidence": [
+        "ECONNREFUSED",
+        "No HTTP response"
+      ],
+      "allowedConfidence": [
+        "MEDIUM",
+        "HIGH"
+      ]
+    }
+  }
+]

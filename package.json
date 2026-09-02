@@ -1,0 +1,35 @@
+{
+  "name": "ai-quality-engineering-lab",
+  "version": "1.0.0",
+  "description": "AI-Native Quality Engineering Lab with MCP, automated testing and intelligent QA agents",
+  "type": "module",
+  "main": "index.js",
+ "scripts": {
+  "dev": "tsx src/server.ts",
+  "build": "tsc",
+  "start": "node dist/server.js",
+  "test:api": "playwright test",
+  "eval:failure": "tsx evaluation/evaluate-failure-analysis.ts",
+  "quality:check": "npm run test:api && npm run eval:failure"
+},
+  "keywords": [
+    "quality-engineering",
+    "mcp",
+    "ai",
+    "testing",
+    "playwright"
+  ],
+  "author": "Jaqueline Fernandes de Andrade",
+  "license": "MIT",
+  "dependencies": {
+    "@modelcontextprotocol/server": "^2.0.0",
+    "dotenv": "^17.4.2",
+    "zod": "^4.5.4"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.62.1",
+    "@types/node": "^26.4.1",
+    "tsx": "^4.23.13",
+    "typescript": "^7.0.2"
+  }
+}
