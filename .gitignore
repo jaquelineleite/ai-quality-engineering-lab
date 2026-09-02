@@ -1,6 +1,8 @@
 node_modules/
 dist/
-.env
 test-results/
 playwright-report/
-mcp-inspector.json
+.env
+.env.*
+*.log
+.DS_Store

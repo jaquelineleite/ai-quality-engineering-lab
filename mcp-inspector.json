@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "ai-quality-engineering-lab": {
+      "type": "stdio",
+      "command": "node",
+      "args": ["dist/server.js"],
+      "cwd": "C:\\Users\\Evand\\ai-quality-engineering-lab",
+      "requestTimeout": 180000
+    }
+  }
+}
