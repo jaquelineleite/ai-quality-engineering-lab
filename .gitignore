@@ -2,7 +2,12 @@ node_modules/
 dist/
 test-results/
 playwright-report/
+
 .env
 .env.*
+!.env.example
+
 *.log
 .DS_Store
+
+mcp-inspector.json
