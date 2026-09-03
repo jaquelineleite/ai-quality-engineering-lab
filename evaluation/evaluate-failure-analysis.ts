@@ -188,7 +188,11 @@ await writeFile(
   ),
   "utf-8"
 );
+
+  if (finalResult.qualityGate === "FAILED") {
+    process.exitCode = 1;
   }
+}
 
 main().catch((error) => {
   console.error(
