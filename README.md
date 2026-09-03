@@ -204,3 +204,5 @@ npm run eval:failure
 ```
 
 This evaluates the model responses against the Golden Dataset and applies the AI Quality Gate.
+
+Current local evaluation baseline: **7 Golden Dataset cases, 85.71% score, Quality Gate PASSED**.

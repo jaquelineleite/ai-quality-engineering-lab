@@ -49,5 +49,73 @@
         "HIGH"
       ]
     }
+  },
+  {
+    "id": "FA-004",
+    "input": {
+      "failureDetails": "API contract requires HTTP 400 when the mandatory customerId field is missing. The request was sent without customerId, but the API returned HTTP 200 and processed the request successfully."
+    },
+    "expected": {
+      "category": "APPLICATION_BUG",
+      "mustContainEvidence": [
+        "customerId",
+        "HTTP 200"
+      ],
+      "allowedConfidence": [
+        "MEDIUM",
+        "HIGH"
+      ]
+    }
+  },
+  {
+    "id": "FA-005",
+    "input": {
+      "failureDetails": "Customer lookup test failed because the expected customer record does not exist in the test environment. The API returned HTTP 404 and the test data setup did not create the required customer before execution."
+    },
+    "expected": {
+      "category": "TEST_DATA",
+      "mustContainEvidence": [
+        "HTTP 404",
+        "test data"
+      ],
+      "allowedConfidence": [
+        "MEDIUM",
+        "HIGH"
+      ]
+    }
+  },
+  {
+    "id": "FA-006",
+    "input": {
+      "failureDetails": "Payment orchestration test failed because a dependent external risk-analysis API returned HTTP 503 Service Unavailable. The application request reached the dependency successfully, but the dependency was unavailable."
+    },
+    "expected": {
+      "category": "API_DEPENDENCY",
+      "mustContainEvidence": [
+        "HTTP 503",
+        "dependency"
+      ],
+      "allowedConfidence": [
+        "MEDIUM",
+        "HIGH"
+      ]
+    }
+  },
+  {
+    "id": "FA-007",
+    "input": {
+      "failureDetails": "Automated test failed during execution. The available log only reports that the test did not complete successfully, with no HTTP status, stack trace, environment error, dependency response or test data evidence."
+    },
+    "expected": {
+      "category": "UNKNOWN",
+      "mustContainEvidence": [
+        "no HTTP status",
+        "no"
+      ],
+      "allowedConfidence": [
+        "LOW",
+        "MEDIUM"
+      ]
+    }
   }
 ]

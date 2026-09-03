@@ -1,7 +1,7 @@
 {
   "evaluation": "failure-analysis",
-  "totalCases": 3,
-  "score": "100%",
+  "totalCases": 7,
+  "score": "85.71%",
   "qualityGate": "PASSED",
-  "generatedAt": "2026-09-02T23:36:45.596Z"
+  "generatedAt": "2026-09-03T15:54:16.909Z"
 }
