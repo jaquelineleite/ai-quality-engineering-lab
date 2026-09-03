@@ -1,4 +1,5 @@
 import "dotenv/config";
+import { evaluateQualityGate } from "./quality/quality-gate.js";
 import { buildSelfHealingPrompt } from "./ai/prompts/self-healing.prompt.js";
 
 import { McpServer } from "@modelcontextprotocol/server";
@@ -228,18 +229,18 @@ server.registerTool(
           ? Number(((passed / total) * 100).toFixed(2))
           : 0;
 
-      let qualityGate:
-        | "PASSED"
-        | "FAILED"
-        | "ERROR";
+      const gateResult = evaluateQualityGate({
+      total,
+      passed,
+      failed,
+     skipped,
+      flaky,
+     });
 
-      if (executionError || total === 0) {
-        qualityGate = "ERROR";
-      } else if (failed > 0) {
-        qualityGate = "FAILED";
-      } else {
-        qualityGate = "PASSED";
-      }
+const qualityGate =
+  executionError !== null
+    ? "ERROR"
+    : gateResult.status;
 
       const result = {
         suite: "API",
@@ -253,6 +254,7 @@ server.registerTool(
 
         passRate: `${passRate}%`,
         qualityGate,
+        qualityGateDetails: gateResult,
 
         execution: {
           successful: executionError === null,
@@ -505,6 +507,46 @@ server.registerTool(
         isError: true,
       };
     }
+  }
+);
+
+// -----------------------------------------------------------------------------
+// TOOL 6 - EVALUATE QUALITY GATE
+// -----------------------------------------------------------------------------
+
+server.registerTool(
+  "evaluate_quality_gate",
+  {
+    description:
+      "Evaluates automated test metrics against Quality Engineering quality gates.",
+
+    inputSchema: z.object({
+      total: z.number().int().min(0),
+      passed: z.number().int().min(0),
+      failed: z.number().int().min(0),
+      skipped: z.number().int().min(0),
+      flaky: z.number().int().min(0),
+    }),
+  },
+
+  async ({ total, passed, failed, skipped, flaky }) => {
+    const result = evaluateQualityGate({
+      total,
+      passed,
+      failed,
+      skipped,
+      flaky,
+    });
+
+    return {
+      content: [
+        {
+          type: "text",
+          text: JSON.stringify(result, null, 2),
+        },
+      ],
+      isError: result.status === "ERROR",
+    };
   }
 );
 

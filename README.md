@@ -57,3 +57,40 @@ This lab explores an AI-Native QA architecture capable of:
                        │   LLM Evaluation     │
                        │    Quality Gate      │
                        └──────────────────────┘
+---
+
+## MCP Tools
+
+The MCP server currently exposes six Quality Engineering tools.
+
+### `get_quality_status`
+
+Reads the latest Playwright JSON report and returns real quality metrics such as total tests, passed tests, failed tests, pass rate and Quality Gate status.
+
+### `run_api_tests`
+
+Triggers the Playwright API test suite through MCP and returns the execution results and quality metrics.
+
+### `generate_test_scenarios`
+
+Uses a local LLM to generate concise risk-based BDD/Gherkin scenarios from software requirements.
+
+### `analyze_test_failure`
+
+Uses AI to perform Root Cause Analysis on test failures based on the available evidence.
+
+Supported classifications include: TEST_AUTOMATION, APPLICATION_BUG, ENVIRONMENT, TEST_DATA, API_DEPENDENCY and UNKNOWN.
+
+### `self_healing_analysis`
+
+Analyzes whether a failed automated test has a safe remediation candidate.
+
+The tool does not automatically modify source code and requires human approval before any proposed change.
+
+### `evaluate_quality_gate`
+
+Evaluates automated test metrics against a Quality Engineering policy.
+
+Example result: 100% pass rate, 0 failed tests, 0 flaky tests and Quality Gate PASSED.
+
+This allows MCP-compatible agents and clients to evaluate pass rate, failures and flaky tests consistently.
