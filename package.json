@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "AI-Native Quality Engineering Lab with MCP, automated testing and intelligent QA agents",
   "type": "module",
-  "main": "index.js",
+  "main": "dist/server.js",
  "scripts": {
   "dev": "tsx src/server.ts",
   "build": "tsc",
