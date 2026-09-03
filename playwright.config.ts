@@ -36,5 +36,10 @@ export default defineConfig({
         },
       },
     },
+
+    {
+      name: "quality-gate",
+      testDir: "./tests/quality",
+    },
   ],
 });
