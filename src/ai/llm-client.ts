@@ -9,6 +9,7 @@ type LLMResponse = {
 type LLMOptions = {
   temperature?: number;
   maxTokens?: number;
+  timeoutMs?: number;
 };
 
 export async function generateWithLLM(
@@ -25,6 +26,9 @@ export async function generateWithLLM(
   const maxTokens =
     options.maxTokens ?? 300;
 
+  const timeoutMs =
+    options.timeoutMs ?? Number(process.env.LLM_TIMEOUT_MS ?? 120000);
+
   if (!apiUrl) {
     throw new Error(
       "LLM_API_URL is not configured."
@@ -39,6 +43,8 @@ export async function generateWithLLM(
 
   const response = await fetch(apiUrl, {
     method: "POST",
+
+    signal: AbortSignal.timeout(timeoutMs),
 
     headers: {
       "Content-Type": "application/json",

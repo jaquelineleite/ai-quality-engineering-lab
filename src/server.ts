@@ -12,7 +12,7 @@ import { buildFailureAnalysisPrompt } from "./ai/prompts/failure-analysis.prompt
 
 import { execFile } from "node:child_process";
 import { promisify } from "node:util";
-import { readFile, mkdir } from "node:fs/promises";
+import { readFile, mkdir, rm } from "node:fs/promises";
 import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -65,17 +65,16 @@ server.registerTool(
 
       const total = passed + failed + skipped + flaky;
 
-      const passRate =
-        total > 0
-          ? Number(((passed / total) * 100).toFixed(2))
-          : 0;
+      const gateResult = evaluateQualityGate({
+        total,
+        passed,
+        failed,
+        skipped,
+        flaky,
+      });
 
-      const qualityGate =
-        total === 0
-          ? "ERROR"
-          : failed > 0
-            ? "FAILED"
-            : "PASSED";
+      const passRate = gateResult.passRate;
+      const qualityGate = gateResult.status;
 
       const qualityStatus = {
         project,
@@ -84,9 +83,11 @@ server.registerTool(
         status:
           qualityGate === "PASSED"
             ? "healthy"
-            : qualityGate === "FAILED"
-              ? "unhealthy"
-              : "unknown",
+            : qualityGate === "WARNING"
+              ? "degraded"
+              : qualityGate === "FAILED"
+                ? "unhealthy"
+                : "unknown",
 
         automatedTests: {
           total,
@@ -166,6 +167,8 @@ server.registerTool(
       recursive: true,
     });
 
+    await rm(resultsFile, { force: true });
+
     const playwrightCli = resolve(
       projectRoot,
       "node_modules",
@@ -224,23 +227,20 @@ server.registerTool(
 
       const total = passed + failed + skipped + flaky;
 
-      const passRate =
-        total > 0
-          ? Number(((passed / total) * 100).toFixed(2))
-          : 0;
-
       const gateResult = evaluateQualityGate({
-      total,
-      passed,
-      failed,
-     skipped,
-      flaky,
-     });
+        total,
+        passed,
+        failed,
+        skipped,
+        flaky,
+      });
 
-const qualityGate =
-  executionError !== null
-    ? "ERROR"
-    : gateResult.status;
+      const passRate = gateResult.passRate;
+
+      const qualityGate =
+        executionError !== null && failed === 0
+          ? "ERROR"
+          : gateResult.status;
 
       const result = {
         suite: "API",
@@ -264,7 +264,6 @@ const qualityGate =
         stdout,
         stderr,
 
-        workingDirectory: projectRoot,
 
         generatedAt: new Date().toISOString(),
       };
