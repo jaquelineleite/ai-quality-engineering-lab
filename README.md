@@ -112,3 +112,43 @@ The CI/CD pipeline currently executes 6 automated Playwright tests across 3 proj
 - Quality Gate ERROR behavior
 
 Current CI result: **6 passed**.
+
+---
+
+## Quick Start
+
+Clone the repository, install the dependencies and run the automated quality checks locally.
+
+### 1. Install
+
+```bash
+git clone https://github.com/jaquelineleite/ai-quality-engineering-lab.git
+cd ai-quality-engineering-lab
+npm install
+```
+
+### 2. Run Automated Tests
+
+```bash
+npm run test:api
+```
+
+Expected result:
+
+```text
+6 passed
+```
+
+### 3. Build the Project
+
+```bash
+npm run build
+```
+
+### 4. Run the Complete Local Quality Check
+
+```bash
+npm run quality:check
+```
+
+This command runs the automated API tests and the LLM evaluation pipeline.
