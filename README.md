@@ -8,6 +8,14 @@ The project demonstrates how AI can support Quality Engineering without replacin
 
 ---
 
+## Business Context
+
+This portfolio project applies AI-Native Quality Engineering practices to public financial and Open Banking APIs.
+
+It is not an implementation, test environment or system of any specific bank or company. Public APIs are used to demonstrate test automation, AI-assisted quality analysis, MCP orchestration and measurable Quality Gates.
+
+---
+
 ## Project Goals
 
 This lab explores an AI-Native QA architecture capable of:
