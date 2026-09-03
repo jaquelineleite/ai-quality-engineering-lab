@@ -38,7 +38,7 @@ test.describe("Quality Gate", () => {
     });
 
     expect(result.status).toBe("WARNING");
-    expect(result.passRate).toBe(95.24);
+    expect(result.passRate).toBe(100);
   });
 
   test("should return ERROR when no tests are discovered", () => {

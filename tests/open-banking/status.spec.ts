@@ -2,6 +2,7 @@ import { test, expect } from "@playwright/test";
 
 test.describe("Open Banking - Public Banks API", () => {
   test("should return the list of available banks", async ({ request }) => {
+    test.setTimeout(60000);
     const response = await request.get(
       "https://apisandbox.openbankproject.com/obp/v4.0.0/banks"
     );
