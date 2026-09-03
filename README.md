@@ -70,6 +70,29 @@ This lab explores an AI-Native QA architecture capable of:
 ```
 ---
 
+## Project Structure
+
+```text
+src/
+├── server.ts
+├── tools/
+│   ├── get-quality-status.tool.ts
+│   ├── run-api-tests.tool.ts
+│   ├── generate-test-scenarios.tool.ts
+│   ├── analyze-test-failure.tool.ts
+│   ├── self-healing-analysis.tool.ts
+│   └── evaluate-quality-gate.tool.ts
+├── quality/
+│   └── quality-gate.ts
+└── ai/
+    ├── llm-client.ts
+    └── prompts/
+```
+
+The MCP server acts only as the application bootstrap, while each Quality Engineering capability is implemented in an isolated tool module. This keeps responsibilities separated and makes the project easier to maintain, test and extend.
+
+---
+
 ## MCP Tools
 
 The MCP server currently exposes six Quality Engineering tools.
