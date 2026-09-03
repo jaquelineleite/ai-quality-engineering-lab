@@ -152,3 +152,47 @@ npm run quality:check
 ```
 
 This command runs the automated API tests and the LLM evaluation pipeline.
+
+---
+
+## Local LLM Setup
+
+The AI features run locally using Ollama and Qwen 2.5 7B.
+
+### 1. Install and Start Ollama
+
+Download Ollama from the official website, then pull the model:
+
+```bash
+ollama pull qwen2.5:7b
+```
+
+Start or verify the model locally:
+
+```bash
+ollama run qwen2.5:7b
+```
+
+### 2. Configure Environment Variables
+
+Copy the example file:
+
+```bash
+cp .env.example .env
+```
+
+Default local configuration:
+
+```env
+LLM_API_URL=http://localhost:11434/v1/chat/completions
+LLM_API_KEY=
+LLM_MODEL=qwen2.5:7b
+```
+
+### 3. Run LLM Evaluation
+
+```bash
+npm run eval:failure
+```
+
+This evaluates the model responses against the Golden Dataset and applies the AI Quality Gate.
