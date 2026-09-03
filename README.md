@@ -218,6 +218,7 @@ Default local configuration:
 LLM_API_URL=http://localhost:11434/v1/chat/completions
 LLM_API_KEY=
 LLM_MODEL=qwen2.5:7b
+LLM_TIMEOUT_MS=120000
 ```
 
 ### 3. Run LLM Evaluation
