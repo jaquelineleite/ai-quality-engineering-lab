@@ -1,4 +1,6 @@
 # AI Quality Engineering Lab
+[![Quality Engineering CI](https://github.com/jaquelineleite/ai-quality-engineering-lab/actions/workflows/quality.yml/badge.svg)](https://github.com/jaquelineleite/ai-quality-engineering-lab/actions/workflows/quality.yml)
+
 
 AI-Native Quality Engineering project focused on combining automated testing, Model Context Protocol (MCP), local LLMs, Open Banking APIs, intelligent failure analysis and LLM evaluation.
 
