@@ -57,6 +57,7 @@ This lab explores an AI-Native QA architecture capable of:
                        │   LLM Evaluation     │
                        │    Quality Gate      │
                        └──────────────────────┘
+```
 ---
 
 ## MCP Tools
