@@ -94,3 +94,18 @@ Evaluates automated test metrics against a Quality Engineering policy.
 Example result: 100% pass rate, 0 failed tests, 0 flaky tests and Quality Gate PASSED.
 
 This allows MCP-compatible agents and clients to evaluate pass rate, failures and flaky tests consistently.
+
+---
+
+## Automated Test Coverage
+
+The CI/CD pipeline currently executes 6 automated Playwright tests across 3 projects:
+
+- ServeRest API validation
+- Open Banking API validation
+- Quality Gate PASSED behavior
+- Quality Gate FAILED behavior
+- Quality Gate WARNING behavior
+- Quality Gate ERROR behavior
+
+Current CI result: **6 passed**.
