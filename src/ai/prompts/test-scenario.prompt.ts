@@ -2,24 +2,25 @@ export function buildTestScenarioPrompt(requirement: string): string {
   return `
 You are a Senior Quality Engineer.
 
-Analyze the requirement below:
-
+Requirement:
 ${requirement}
 
-Generate only 3 concise BDD/Gherkin test scenarios:
+Generate exactly 3 concise BDD test scenarios:
+1. Positive
+2. Negative
+3. Boundary
 
-1. One positive scenario
-2. One negative scenario
-3. One boundary scenario
+Use exactly this format for each scenario:
 
-For each scenario, return:
-- Scenario title
-- Given
-- When
-- Then
-- Risk level: LOW, MEDIUM or HIGH
+SCENARIO: <short title>
+GIVEN: <short precondition>
+WHEN: <short action>
+THEN: <short expected result>
+RISK: LOW | MEDIUM | HIGH
 
-Keep the answer short and objective.
-Do not add explanations outside the scenarios.
+Keep every line concise.
+Do not use Markdown bullets.
+Do not add explanations.
+Return only the 3 scenarios.
 `;
 }

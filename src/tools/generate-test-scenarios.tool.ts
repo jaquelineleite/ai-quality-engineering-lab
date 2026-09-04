@@ -26,7 +26,7 @@ export function registerGenerateTestScenariosTool(
     async ({ requirement }) => {
       try {
         const prompt = buildTestScenarioPrompt(requirement);
-        const scenarios = await generateWithLLM(prompt);
+        const scenarios = await generateWithLLM(prompt, { temperature: 0.1, maxTokens: 220, timeoutMs: 120000 });
 
         return {
           content: [
