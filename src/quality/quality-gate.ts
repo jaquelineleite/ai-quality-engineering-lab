@@ -66,7 +66,7 @@ export function evaluateQualityGate(
   }
 
   const passRate = Number(
-    (((metrics.passed + metrics.flaky) / executedTests) * 100).toFixed(2)
+    ((metrics.passed / executedTests) * 100).toFixed(2)
   );
 
   if (metrics.failed > policy.maxFailedTests) {
@@ -100,7 +100,7 @@ export function evaluateQualityGate(
     );
 
     return {
-      status: "WARNING",
+      status: "FAILED",
       passRate,
       executedTests,
       reasons,
